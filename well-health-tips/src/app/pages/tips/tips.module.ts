@@ -7,6 +7,7 @@ import { TipsListComponent } from './components/tips-list/tips-list.component';
 import { TipsDetailComponent } from './components/tips-detail/tips-detail.component';
 import {RouterModule} from '@angular/router';
 import {TipsRoutingModule} from './tips-routing.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import {TipsRoutingModule} from './tips-routing.module';
     TipsListComponent,
     TipsDetailComponent
   ],
-  imports: [TipsRoutingModule],
+    imports: [TipsRoutingModule, CommonModule],
   providers: [],
   bootstrap: []
 })
