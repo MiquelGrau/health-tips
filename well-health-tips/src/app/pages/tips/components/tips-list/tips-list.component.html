@@ -1,6 +1,6 @@
 <b *ngIf="loading$ | async">Loading . . .</b>
 <div class="table-responsive">
-  <table *ngIf="!(loading$ | async)" class="table">
+  <table *ngIf="!(loading$ | async)" class="table table-hover">
     <thead class="table-dark">
     <tr>
       <th scope="col">Title</th>
@@ -8,33 +8,44 @@
       <th scope="col" class="text-center">Down Votes</th>
     </tr>
     </thead>
-    <tbody>
-      <ng-container *ngFor="let tip of tipsList$ | async">
-        <tr [style.background-color]="getTypeColour(tip.type)">
-          <th scope="row">{{tip.title}}</th>
-          <td class="align-middle text-center">{{tip.upVotes}}</td>
-          <td class="align-middle text-center">{{tip.downVotes}}</td>
-          <td class="align-middle text-center">{{tip.datetime | date}}</td>
-        </tr>
-<!--        <tr *ngIf="tip.datetime >= today" [style.background-color]="getTypeColour(tip.type)">-->
-<!--          <th scope="row">{{tip.title}}</th>-->
-<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
-<!--        </tr>-->
-<!--        <tr *ngIf="tip.datetime > thisWeek && tip.datetime < today" [style.background-color]="getTypeColour(tip.type)">-->
-<!--          <th scope="row">{{tip.title}}</th>-->
-<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
-<!--        </tr>-->
-<!--        <tr *ngIf="tip.datetime < thisWeek" [style.background-color]="getTypeColour(tip.type)">-->
-<!--          <th scope="row">{{tip.title}}</th>-->
-<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
-<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
-<!--        </tr>-->
-      </ng-container>
-    </tbody>
+    <ng-container *ngIf="todayTips.length">
+      <div class="date-group-title">TODAY</div>
+      <tbody>
+      <tr role="button" *ngFor="let tip of todayTips"
+          [style.background-color]="getTypeColour(tip.type)"
+          (click)="selectTip(tip)">
+        <td>{{tip.title}}</td>
+        <td class="align-middle text-center">{{tip.upVotes}}</td>
+        <td class="align-middle text-center">{{tip.downVotes}}</td>
+<!--        <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+      </tr>
+      </tbody>
+    </ng-container>
+    <ng-container *ngIf="thisWeekTips.length">
+      <div class="date-group-title">THIS WEEK</div>
+      <tbody>
+      <tr role="button" *ngFor="let tip of thisWeekTips"
+          [style.background-color]="getTypeColour(tip.type)"
+          (click)="selectTip(tip)">
+        <td>{{tip.title}}</td>
+        <td class="align-middle text-center">{{tip.upVotes}}</td>
+        <td class="align-middle text-center">{{tip.downVotes}}</td>
+<!--        <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+      </tr>
+      </tbody>
+    </ng-container>
+    <ng-container *ngIf="earlierTips.length">
+      <div class="date-group-title">EARLIER</div>
+      <tbody>
+      <tr role="button" *ngFor="let tip of earlierTips"
+          [style.background-color]="getTypeColour(tip.type)"
+          (click)="selectTip(tip)">
+        <td>{{tip.title}}</td>
+        <td class="align-middle text-center">{{tip.upVotes}}</td>
+        <td class="align-middle text-center">{{tip.downVotes}}</td>
+<!--        <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+      </tr>
+      </tbody>
+    </ng-container>
   </table>
 </div>

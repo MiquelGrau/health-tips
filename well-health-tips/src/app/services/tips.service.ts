@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {switchMap, map, catchError, finalize} from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import {Observable, of} from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -15,5 +12,9 @@ export class TipsService {
 
   public getTipsList(): Observable<any> {
     return this.http.get(environment.api_url + '/tips/random');
+  }
+
+  public getTip(id: string): Observable<any> {
+    return this.http.get(environment.api_url + '/tips/' + id);
   }
 }

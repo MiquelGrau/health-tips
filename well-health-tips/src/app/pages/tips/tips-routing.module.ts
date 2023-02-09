@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TipsComponent } from './tips.component';
 import {TipsListComponent} from './components/tips-list/tips-list.component';
 import {TipsDetailComponent} from './components/tips-detail/tips-detail.component';
-import {TipsListResolver} from './tips.resolver';
+import {TipResolver, TipsListResolver} from './tips.resolver';
 
 const routes: Routes = [
   {
@@ -16,8 +16,9 @@ const routes: Routes = [
         resolve: { tipsList: TipsListResolver },
       },
       {
-        path: 'detail',
-        component: TipsDetailComponent
+        path: 'detail/:id',
+        component: TipsDetailComponent,
+        resolve: { tip: TipResolver },
       },
     ],
   },
