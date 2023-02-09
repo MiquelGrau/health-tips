@@ -1,1 +1,40 @@
 <b *ngIf="loading$ | async">Loading . . .</b>
+<div class="table-responsive">
+  <table *ngIf="!(loading$ | async)" class="table">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col" class="text-center">Up Votes</th>
+      <th scope="col" class="text-center">Down Votes</th>
+    </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let tip of tipsList$ | async">
+        <tr [style.background-color]="getTypeColour(tip.type)">
+          <th scope="row">{{tip.title}}</th>
+          <td class="align-middle text-center">{{tip.upVotes}}</td>
+          <td class="align-middle text-center">{{tip.downVotes}}</td>
+          <td class="align-middle text-center">{{tip.datetime | date}}</td>
+        </tr>
+<!--        <tr *ngIf="tip.datetime >= today" [style.background-color]="getTypeColour(tip.type)">-->
+<!--          <th scope="row">{{tip.title}}</th>-->
+<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+<!--        </tr>-->
+<!--        <tr *ngIf="tip.datetime > thisWeek && tip.datetime < today" [style.background-color]="getTypeColour(tip.type)">-->
+<!--          <th scope="row">{{tip.title}}</th>-->
+<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+<!--        </tr>-->
+<!--        <tr *ngIf="tip.datetime < thisWeek" [style.background-color]="getTypeColour(tip.type)">-->
+<!--          <th scope="row">{{tip.title}}</th>-->
+<!--          <td class="align-middle text-center">{{tip.upVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.downVotes}}</td>-->
+<!--          <td class="align-middle text-center">{{tip.datetime | date}}</td>-->
+<!--        </tr>-->
+      </ng-container>
+    </tbody>
+  </table>
+</div>

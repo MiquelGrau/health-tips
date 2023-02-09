@@ -8,4 +8,9 @@ export const loadTips = createAction(
 export const loadedTips = createAction(
   '[Tips List] Loaded Tips List Success',
   props<{ tipsList: TipModel[] }>()
-)
+);
+
+export const sortLoadedTips = createAction(
+  '[Tips List] Sort Loaded Tips List Success',
+  props<{ tipsList: TipModel[] }>()
+);

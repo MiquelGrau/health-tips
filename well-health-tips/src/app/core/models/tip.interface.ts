@@ -1,4 +1,18 @@
 
 export interface TipModel {
-  type: string; // TODO not string type
+  id: number;
+  type: TipType;
+  title: string;
+  text: string;
+  upVotes: number;
+  downVotes: number;
+  datetime: Date;
+}
+
+export enum TipType {
+  DoctorHealthTip = 'DoctorHealthTip',
+  PsychoHealthTip = 'PsychoHealthTip',
+  FamilyHealthTip = 'FamilyHealthTip',
+  FitnessHealthTip = 'FitnessHealthTip',
+  InsuranceHealthTip = 'InsuranceHealthTip',
 }

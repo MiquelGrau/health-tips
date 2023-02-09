@@ -15,7 +15,10 @@ import {CommonModule} from '@angular/common';
     TipsListComponent,
     TipsDetailComponent
   ],
-    imports: [TipsRoutingModule, CommonModule],
+    imports: [
+      TipsRoutingModule,
+      CommonModule
+    ],
   providers: [],
   bootstrap: []
 })

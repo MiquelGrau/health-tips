@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.state';
+import { TipsEffects } from './state/effects/tips.effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ROOT_REDUCERS } from './state/app.state';
     HttpClientModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([TipsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

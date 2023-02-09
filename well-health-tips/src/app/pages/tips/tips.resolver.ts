@@ -1,14 +1,17 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {TipsService} from '../../services/tips.service';
+import { loadTips } from '../../state/actions/tip.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TipsListResolver implements Resolve<any> {
-  constructor (private tipsService: TipsService){}
+  constructor (
+    private store: Store<any>,
+  ){}
 
-  resolve(route: ActivatedRouteSnapshot) {
-    return this.tipsService.getTipsList();
+  resolve(route: ActivatedRouteSnapshot): void {
+    this.store.dispatch(loadTips());
   }
 }
