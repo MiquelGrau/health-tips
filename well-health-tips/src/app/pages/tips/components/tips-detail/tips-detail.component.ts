@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {
   selectSelectedTip,
 } from '../../../../state/selectors/tips.selectors';
-import {selectTip} from '../../../../state/actions/tip.actions';
+import {selectTip, unselectTip, upVoteTip} from '../../../../state/actions/tip.actions';
 
 @Component({
   selector: 'app-tips-detail',
@@ -26,27 +26,16 @@ export class TipsDetailComponent {
   }
 
   backToList(): void {
-    this.store.dispatch(selectTip({ tip: null }));
+    this.store.dispatch(unselectTip());
     this.router.navigate(['/list']);
   }
 
-  upVote(): void {
-
+  upVote(id: number): void {
+    this.store.dispatch(upVoteTip( { id: id }));
   }
 
-  downVote(): void {
-
-  }
-
-  getTypeColour(type: TipType): string { // TODO this should be a pipe?
-    switch (type) {
-      case TipType.DoctorHealthTip: return '#ddedea';
-      case TipType.FamilyHealthTip: return '#daeaf6';
-      case TipType.FitnessHealthTip: return '#fce1e4';
-      case TipType.InsuranceHealthTip: return '#fcf4dd';
-      case TipType.PsychoHealthTip: return '#e8dff5';
-      default: return '#ddedea';
-    }
+  downVote(id: number): void {
+    this.store.dispatch(upVoteTip( { id: id }));
   }
 
 }

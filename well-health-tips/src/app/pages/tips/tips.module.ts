@@ -5,12 +5,14 @@ import { TipsListComponent } from './components/tips-list/tips-list.component';
 import { TipsDetailComponent } from './components/tips-detail/tips-detail.component';
 import {TipsRoutingModule} from './tips-routing.module';
 import {CommonModule} from '@angular/common';
+import {GetTypeColourPipe} from '../../pipes/get-type-colour.pipe';
 
 @NgModule({
   declarations: [
     TipsComponent,
     TipsListComponent,
-    TipsDetailComponent
+    TipsDetailComponent,
+    GetTypeColourPipe
   ],
     imports: [
       TipsRoutingModule,

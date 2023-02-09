@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { loadTip, loadTips } from '../../state/actions/tip.actions';
+import {loadTip, loadTips} from '../../state/actions/tip.actions';
 import { Store } from '@ngrx/store';
-import { selectTipsList } from '../../state/selectors/tips.selectors';
+import {selectSelectedTip, selectTipsList} from '../../state/selectors/tips.selectors';
 import {take} from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,6 @@ export class TipsListResolver implements Resolve<any> {
     this.store.select(selectTipsList)
       .pipe(take(1))
       .subscribe(list => {
-        console.log(list)
         if (list.length === 0) {
           this.store.dispatch(loadTips());
         }
@@ -34,6 +33,12 @@ export class TipResolver implements Resolve<any> {
   ){}
 
   resolve(route: ActivatedRouteSnapshot): void {
-    this.store.dispatch(loadTip({ id: route.params['id'] }));
+    this.store.select(selectSelectedTip)
+      .pipe(take(1))
+      .subscribe(tip => {
+        if (!tip) {
+          this.store.dispatch(loadTip({ id: route.params['id'] }));
+        }
+      })
   }
 }

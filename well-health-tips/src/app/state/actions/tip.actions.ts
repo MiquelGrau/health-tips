@@ -29,3 +29,27 @@ export const selectTip = createAction(
   '[Tips List] Tip Selected Success',
   props<{ tip: TipModel | null }>()
 );
+
+export const unselectTip = createAction(
+  '[Tips List] Tip unselected Success',
+);
+
+export const upVoteTip = createAction(
+  '[Tip Detail] Tip UpVote',
+  props<{ id: number }>()
+);
+
+export const upVotedTip = createAction(
+  '[Tip Detail] Tip UpVote Success',
+  props<{ tip: TipModel }>()
+);
+
+export const downVoteTip = createAction(
+  '[Tip Detail] Tip DownVote',
+  props<{ id: number }>()
+);
+
+export const downVotedTip = createAction(
+  '[Tip Detail] Tip DownVote',
+  props<{ tip: TipModel }>()
+);

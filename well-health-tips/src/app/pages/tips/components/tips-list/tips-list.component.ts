@@ -60,15 +60,4 @@ export class TipsListComponent implements OnInit {
     return 'earlier';
   }
 
-  getTypeColour(type: TipType): string { // TODO should be a pipe?
-    switch (type) {
-      case TipType.DoctorHealthTip: return '#ddedea';
-      case TipType.FamilyHealthTip: return '#daeaf6';
-      case TipType.FitnessHealthTip: return '#fce1e4';
-      case TipType.InsuranceHealthTip: return '#fcf4dd';
-      case TipType.PsychoHealthTip: return '#e8dff5';
-      default: return '#ddedea';
-    }
-  }
-
 }

@@ -12,7 +12,7 @@
       <div class="date-group-title">TODAY</div>
       <tbody>
       <tr role="button" *ngFor="let tip of todayTips"
-          [style.background-color]="getTypeColour(tip.type)"
+          [style.background-color]="tip.type | getTypeColour"
           (click)="selectTip(tip)">
         <td>{{tip.title}}</td>
         <td class="align-middle text-center">{{tip.upVotes}}</td>
@@ -25,7 +25,7 @@
       <div class="date-group-title">THIS WEEK</div>
       <tbody>
       <tr role="button" *ngFor="let tip of thisWeekTips"
-          [style.background-color]="getTypeColour(tip.type)"
+          [style.background-color]="tip.type | getTypeColour"
           (click)="selectTip(tip)">
         <td>{{tip.title}}</td>
         <td class="align-middle text-center">{{tip.upVotes}}</td>
@@ -38,7 +38,7 @@
       <div class="date-group-title">EARLIER</div>
       <tbody>
       <tr role="button" *ngFor="let tip of earlierTips"
-          [style.background-color]="getTypeColour(tip.type)"
+          [style.background-color]="tip.type | getTypeColour"
           (click)="selectTip(tip)">
         <td>{{tip.title}}</td>
         <td class="align-middle text-center">{{tip.upVotes}}</td>

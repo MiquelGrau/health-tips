@@ -1,5 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import {loadTips, loadedTips, sortLoadedTips, selectTip, loadTip, loadedTip} from '../actions/tip.actions';
+import {
+  loadTips,
+  loadedTips,
+  sortLoadedTips,
+  selectTip,
+  loadTip,
+  loadedTip,
+  upVoteTip,
+  unselectTip, downVoteTip, upVotedTip, downVotedTip
+} from '../actions/tip.actions';
 import { TipsState } from '../../core/tips.state';
 
 export const initialState: TipsState = { loading: false, sorted: false, tipsList: [], selectedTip: null }
@@ -26,5 +35,32 @@ export const tipsReducer = createReducer(
   }),
   on(selectTip, (state, { tip }) => {
     return { ...state, selectedTip: tip };
+  }),
+  on(unselectTip, (state) => {
+    return { ...state, selectedTip: null };
+  }),
+  on(upVoteTip, (state) => {
+    return { ...state };
+  }),
+  on(upVotedTip, (state, { tip }) => {
+    const newTipsList = [...state.tipsList];
+    if (state.tipsList?.length) {
+      const tipIndex = newTipsList.findIndex(t => t.id === tip.id);
+      newTipsList[tipIndex].upVotes++;
+    }
+
+    return { ...state, selectedTip: tip, tipsList: newTipsList };
+  }),
+  on(downVoteTip, (state) => {
+    return { ...state };
+  }),
+  on(downVotedTip, (state, { tip }) => {
+    const newTipsList = [...state.tipsList];
+    if (state.tipsList?.length) {
+      const tipIndex = newTipsList.findIndex(t => t.id === tip.id);
+      newTipsList[tipIndex].upVotes--;
+    }
+
+    return { ...state, selectedTip: tip, tipsList: newTipsList };
   }),
 );
